@@ -79,20 +79,15 @@
             <td>{{ product.name }}</td>
             <td>{{ product.price }}</td>
             <td>
-              
-                <button @click="openEditModal(product)" class="btn btn-primary">Düzenle</button>
-              <button @click="deleteProduct(product.id)" class="btn btn-danger">Sil</button>
-              
-             
+              <button @click="openEditModal(product)" class="btn btn-primary">Düzenle</button>
+              <button @click="deleteProduct(product.id)" class="btn btn-danger">Sil</button>    
             </td>
           </tr>
         </tbody>
       </table>
-
       <button @click="openCreateModal" class="btn btn-success">Ürün Ekle</button>
       </div>
     </div>
-
     <!-- Oluşturma Modalı ve Düzenleme Modalı -->
 <div v-if="createModalOpen" class="modal-overlay">
   <div class="modal-content">
@@ -129,7 +124,6 @@
         <label for="editProductPrice">Fiyat</label>
         <input type="number" class="form-control" id="editProductPrice" v-model="editedProduct.price" placeholder="Fiyat">
         <span v-if="formErrors.price" class="error-label">{{ formErrors.price[0] }}</span>
-        <!-- Eğer hiçbir değişiklik yapılmadıysa ve form gönderilmişse hata mesajı göster -->
         <span v-if="formSubmitted && isProductUnchanged" class="error-label">No changes made to the product.</span>
       </div>
       <div style="margin-top: 10px;">
@@ -263,7 +257,6 @@ export default {
       this.formSubmitted = true;
 
       if (!this.editedProduct.name || !this.editedProduct.price) {
-        // If either name or price is empty, set the respective form errors
         this.formErrors.name = !this.editedProduct.name ? ['Ürün Adı alanı boş bırakılamaz.'] : null;
         this.formErrors.price = !this.editedProduct.price ? ['Fiyat alanı boş bırakılamaz.'] : null;
         return;
